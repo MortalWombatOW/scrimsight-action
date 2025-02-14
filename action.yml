@@ -1,0 +1,18 @@
+name: Scrimsight Code Review
+description: Review PRs against Scrimsight coding standards using Gemini
+inputs:
+  gemini-api-key:
+    description: Gemini API key
+    required: true
+  standards:
+    description: JSON array of review standards
+    default: '[
+      "React components only take as minimal input as possible, and use it to select data from atoms, instead of getting all the data passed in from parent components",
+      "If a component is used more than once, it should be in a top-level folder under components/"
+    ]'
+  github-token:
+    description: GitHub token
+    required: true
+runs:
+  using: node20
+  main: dist/main.js 
