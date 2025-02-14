@@ -4,8 +4,15 @@ export async function analyzeWithGemini(apiKey, standard, diff) {
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ 
     model: "gemini-1.5-flash",
-    systemInstruction: `Analyze code changes against this standard: ${standard}. 
-      Respond in format: "Standard Name: [PASSED/FAILED]\nLines [X-Y]: [Explanation]"`
+    systemInstruction: `Analyze code changes against this standard: ${standard.shortname} - ${standard.description}.
+      Use these examples to guide your analysis:
+      Good Example:
+      \`\`\`${standard.positiveExample}\`\`\`
+      
+      Bad Example:
+      \`\`\`${standard.negativeExample}\`\`\`
+      
+      Respond in format: "${standard.shortname}: [PASSED/FAILED]\nLines [X-Y]: [Explanation]"`
   });
 
   try {

@@ -21,7 +21,8 @@ async function run() {
         prDiff
       );
       
-      commentBody += `### Standard: ${standard}\n`;
+      commentBody += `### ${standard.shortname}\n`;
+      commentBody += `_${standard.description}_\n\n`;
       commentBody += analysis.foundIssues 
         ? `⚠️ **Issues Found**\n${analysis.details}\n`
         : "✅ All checks passed\n";
