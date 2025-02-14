@@ -1,11 +1,15 @@
-import { getExecDiff } from './diff.js';
+import { getPRDiff } from './diff.js';
 import { analyzeWithGemini } from './analyzer.js';
 import { postComment } from './github.js';
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 
 async function run() {
   try {
-    const prDiff = await getExecDiff();
+    const githubToken = process.env.GITHUB_TOKEN;
+    const context = github.context;
+    
+    const prDiff = await getPRDiff(githubToken, context);
     const standards = JSON.parse(core.getInput('standards'));
     
     let commentBody = "## Scrimsight Code Review Results\n\n";
