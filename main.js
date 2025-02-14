@@ -1,6 +1,7 @@
 import { getExecDiff } from './diff.js';
 import { analyzeWithGemini } from './analyzer.js';
 import { postComment } from './github.js';
+import * as core from '@actions/core';
 
 async function run() {
   try {
@@ -25,6 +26,7 @@ async function run() {
 
     await postComment(commentBody);
   } catch (error) {
+    console.error(error);
     core.setFailed(error.message);
   }
 }
