@@ -6,7 +6,7 @@ import * as github from '@actions/github';
 
 async function run() {
   try {
-    const githubToken = process.env.GITHUB_TOKEN;
+    const githubToken = core.getInput('github-token');
     const context = github.context;
     
     const prDiff = await getPRDiff(githubToken, context);
