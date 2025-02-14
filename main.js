@@ -23,7 +23,7 @@ async function run() {
       commentBody += "\n";
     }
 
-    await postComment(core.getInput('github-token'), commentBody);
+    await postComment(commentBody);
   } catch (error) {
     core.setFailed(error.message);
   }

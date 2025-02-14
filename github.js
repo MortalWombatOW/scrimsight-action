@@ -1,8 +1,8 @@
 import * as github from '@actions/github';
 import * as core from '@actions/core';
 
-export async function postComment(token, body) {
-  const octokit = github.getOctokit(token);
+export async function postComment(body) {
+  const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
   const context = github.context;
 
   await octokit.rest.issues.createComment({
